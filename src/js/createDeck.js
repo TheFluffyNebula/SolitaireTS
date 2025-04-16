@@ -17,8 +17,8 @@ const generateDeck = () => {
     shuffled[i] = oldValue;
   }
   // console.log(shuffled[0].suit);
-    return shuffled;
+  return shuffled;
 };
 
 // generateDeck(); // test
-export {generateDeck};
+export default {generateDeck};
