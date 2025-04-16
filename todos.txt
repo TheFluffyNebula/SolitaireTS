@@ -1,0 +1,12 @@
+html/css (card slots) for 
+tableau piles (z-axis needed, 7 of these, 13 levels each) 
+foundation piles (four of these)
+stock pile, waste pile (one card each)
+
+cardslot (visibility attribute, become hidden when there's not a card here)
+^^ need 13 of these on each slot
+
+js stuff -- add event listeners for: (FSM/DFA-like in terms of possible transitions)
+stock -> to waste
+waste -> to foundation or tableau
+tableau -> to separate column or foundation
