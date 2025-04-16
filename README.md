@@ -2,6 +2,6 @@
 
 Solitaire
 
-Structure
+Purpose: Learn the structure
 
 The classic game. 
