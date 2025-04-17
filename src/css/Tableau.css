@@ -1,0 +1,10 @@
+.tableauContainer {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.tableauColumn {
+    display: flex;
+    flex-direction: column;
+}
