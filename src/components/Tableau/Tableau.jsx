@@ -1,4 +1,4 @@
-import '../css/Tableau.css'
+import 'Tableau.css'
 
 // 7 columns of 13 card slots
 // given 7 arrays, update the card slots of the corresponding piles

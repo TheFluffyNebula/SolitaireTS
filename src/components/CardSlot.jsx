@@ -1,16 +1,18 @@
 import Card from "./Card";
 
-function CardSlot({ card, faceUp, draggable, onClick }) {
+function CardSlot({ card, faceUp, isTopCard, draggable, onClick }) {
+  const isDraggable = !!card && faceUp && draggable && isTopCard;
+
   return (
-    <div className="card-slot" draggable={!!card && draggable} onClick={onClick}>
+    <div className="card-slot" draggable={isDraggable} onClick={onClick}>
       {card ? (
         <Card card={card} faceUp={faceUp} />
       ) : (
-        // null or <div className="empty-slot" /> for a visible placeholder
         <div className="empty-slot" />
       )}
     </div>
   );
 }
+
 
 export default CardSlot;
