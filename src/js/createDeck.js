@@ -5,7 +5,7 @@ const generateDeck = () => {
   // console.log("creating deck");
   const unshuffled = SUITS.flatMap((suit) => {
     return VALUES.map((value) => {
-      return { suit, value };
+      return { suit, value, faceUp: false };
     });
   });
   // console.log(unshuffled);
@@ -32,7 +32,10 @@ const splitDeck = () => {
   let cur = 0;
   for (let i = 0; i < 7; i++) {
       for (let j = 0; j <= i; j++) {
-          splitDeck.tableau[i].push(deck[cur++]);
+        if (j == i) {
+          deck[cur].faceUp = true;
+        }
+        splitDeck.tableau[i].push(deck[cur++]);
       }
   }
   for (let i = 0; i < 24; i++) {

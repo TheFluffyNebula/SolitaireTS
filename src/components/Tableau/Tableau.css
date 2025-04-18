@@ -1,10 +1,23 @@
 .tableauContainer {
     display: flex;
-    gap: 1rem;
+    gap: 5rem;
     justify-content: center;
+    margin-top: 30%;
 }
 
 .tableauColumn {
     display: flex;
     flex-direction: column;
+}
+
+.tableau-card-slot {
+    margin-top: -100px;
+}
+
+.card.face-down {
+    background-color: navy;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100px;
+    height: 140px;
 }

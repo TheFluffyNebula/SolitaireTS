@@ -12,6 +12,7 @@ function Tableau({ tableauPiles }) {
               const card = pile[rowIdx] || null;
               const faceUp = card?.faceUp || false;
               const topCard = rowIdx === pile.length - 1; // top card in the column
+              // console.log(topCard);
   
               return (
                 <TableauCardSlot

@@ -3,7 +3,7 @@ import Card from "../Cards/Card";
 function TableauCardSlot({ card, faceUp, topCard }) {
 
   return (
-    <div className="card-slot" draggable={faceUp} topCard={topCard}
+    <div className="tableau-card-slot" draggable={faceUp}
         onDragStart={(e) => {
             e.dataTransfer.setData(
             "card",
@@ -12,7 +12,11 @@ function TableauCardSlot({ card, faceUp, topCard }) {
         }}
     >
       {card ? (
-        <Card card={card} faceUp={faceUp} />
+        faceUp ? (
+          <Card card={card} />
+        ) : (
+          <div className="card face-down" />
+        )
       ) : (
         <div className="empty-slot" />
       )}
