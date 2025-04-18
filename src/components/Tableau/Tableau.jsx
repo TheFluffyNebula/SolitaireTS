@@ -1,4 +1,4 @@
-import 'Tableau.css'
+import './Tableau.css'
 import TableauCardSlot from './TableauCardSlot.jsx'
 
 // 7 columns of 13 card slots

@@ -1,15 +1,13 @@
 import './App.css'
-import Card from "./components/Cards/Card";
+import Tableau from "./components/Tableau/Tableau"
+import createDeck from "./js/createDeck"
 
 function App() {
-  // const AceOfSpades = {
-  //   suit: '♠',
-  //   value: 'A'
-  // };
-
+  let deck = createDeck.splitDeck();
+  let piles = deck.tableau;
   return (
     <>
-      <Card card={AceOfSpades}/>
+      <Tableau tableauPiles={piles}></Tableau>
     </>
   )
 }

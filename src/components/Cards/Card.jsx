@@ -1,4 +1,4 @@
-import 'Card.css';
+import './Card.css';
 
 function Card({ card }) {
   const { suit, value } = card;

@@ -20,5 +20,28 @@ const generateDeck = () => {
   return shuffled;
 };
 
-// generateDeck(); // test
-export default {generateDeck};
+const splitDeck = () => {
+  let deck = generateDeck();
+  // output format: 
+  // tableau: 1, 2, 3, 4, 5, 6, 7
+  // stock: 24
+  let splitDeck = {
+      tableau: Array.from({ length: 7 }, () => []),
+      stock: []
+  }
+  let cur = 0;
+  for (let i = 0; i < 7; i++) {
+      for (let j = 0; j <= i; j++) {
+          splitDeck.tableau[i].push(deck[cur++]);
+      }
+  }
+  for (let i = 0; i < 24; i++) {
+      splitDeck.stock.push(deck[cur++]);
+  }
+  // console.log(splitDeck.tableau);
+  return splitDeck;
+}
+
+// splitDeck();
+
+export default {splitDeck};
