@@ -5,7 +5,7 @@ import TableauCardSlot from './TableauCardSlot.jsx'
 // given 7 arrays, update the card slots of the corresponding piles
 function Tableau({ tableauPiles }) {
     return (
-        <div className="tableauContainer">
+      <div className="tableauContainer">
         {tableauPiles.map((pile, colIdx) => (
           <div className="tableauColumn" key={colIdx}>
             {Array.from({ length: 13 }, (_, rowIdx) => {
