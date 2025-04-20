@@ -1,0 +1,11 @@
+.foundationContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.empty-foundation-slot {
+    border: 2px solid black;
+    width: 100px;
+    height: 140px;
+}

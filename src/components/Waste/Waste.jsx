@@ -15,7 +15,7 @@ function Waste({ wastePile }) {
             {hasCards ? (
                 <Card card={card}></Card>
             ) : (
-                <div className="empty-slot" />
+                <div className="empty-waste-slot" />
             )}
         </div>
     );

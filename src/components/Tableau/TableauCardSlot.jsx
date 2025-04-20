@@ -18,7 +18,7 @@ function TableauCardSlot({ card, faceUp, topCard }) {
           <div className="card face-down" />
         )
       ) : (
-        <div className="empty-slot" />
+        <div className="empty-tableau-slot" />
       )}
     </div>
   );

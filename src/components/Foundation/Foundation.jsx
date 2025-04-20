@@ -8,7 +8,7 @@ function Foundation({ foundationPiles }) {
             {foundationPiles.map((pile, idx) => {
                 const topCard = pile.length > 0 ? pile[pile.length - 1] : null;
                 return (
-                    <div className="foundationPile">
+                    <div className="foundationPile" key={idx}>
                         <FoundationCardSlot card={topCard}/>
                     </div>
                 );
@@ -18,4 +18,3 @@ function Foundation({ foundationPiles }) {
 }
 
 export default Foundation
-

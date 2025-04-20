@@ -1,7 +1,7 @@
 import Card from "../Cards/Card";
 
-function FoundationCardSlot({ card, }) {
-
+function FoundationCardSlot({ card }) {
+  // console.log(card);
   return (
     <div className="foundation-card-slot" draggable={true}
         onDragStart={(e) => {
@@ -14,7 +14,7 @@ function FoundationCardSlot({ card, }) {
       {card ? (
         <Card card={card} /> 
       ) : (
-        <div className="empty-slot" />
+        <div className="empty-foundation-slot" />
       )}
     </div>
   );

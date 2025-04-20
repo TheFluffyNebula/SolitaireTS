@@ -1,6 +1,11 @@
-.app-top-left {
+.app-top {
     margin-left: 10%;
     margin-top: 3%;
+    display: flex;
+    gap: 500px;
+}
+
+.app-top-left {
     display: flex;
     gap: 10px;
 }

@@ -2,6 +2,7 @@ import './App.css'
 import Tableau from "./components/Tableau/Tableau"
 import Stock from "./components/Stock/Stock"
 import Waste from "./components/Waste/Waste"
+import Foundation from "./components/Foundation/Foundation"
 import createDeck from "./js/createDeck"
 
 function App() {
@@ -13,11 +14,15 @@ function App() {
     value: 'A'
   }
   let waste = [sampleCard];
+  let foundation = [[sampleCard], [sampleCard], [], [sampleCard]];
   return (
     <>
-      <div className='app-top-left'>
-        <Stock stockPile={stock}></Stock>
-        <Waste wastePile={waste}></Waste>
+      <div className='app-top'>
+        <div className='app-top-left'>
+          <Stock stockPile={stock}></Stock>
+          <Waste wastePile={waste}></Waste>
+        </div>
+        <Foundation foundationPiles={foundation}></Foundation>
       </div>
       <Tableau tableauPiles={tableau}></Tableau>
     </>
