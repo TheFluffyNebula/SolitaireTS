@@ -5,7 +5,7 @@ import Card from "../Cards/Card";
 // if there's no card, visibility hidden
 function Waste({ wastePile }) {
     const hasCards = wastePile.length > 0;
-    console.log(wastePile.at(-1));
+    // console.log(wastePile.at(-1));
     let card = null;
     if (hasCards) {
         card = wastePile.at(-1);
