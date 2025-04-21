@@ -1,34 +1,44 @@
+import React from "react";
+import { useState, useEffect } from "react";
+
 import './Tableau.css'
 import TableauCardSlot from './TableauCardSlot.jsx'
 
 // 7 columns of 13 card slots
 // given 7 arrays, update the card slots of the corresponding piles
 function Tableau({ tableauPiles }) {
+    const [tableau, setTableau] = useState([]);
+
+    useEffect(() => {
+        if (tableauPiles) {
+            setTableau(tableauPiles);
+        }
+    }, [tableauPiles]);
     return (
-      <div className="tableauContainer">
-        {tableauPiles.map((pile, colIdx) => (
-          <div className="tableauColumn" key={colIdx}>
-            {Array.from({ length: 13 }, (_, rowIdx) => {
-              const card = pile[rowIdx] || null;
-              const faceUp = card?.faceUp || false;
-              const topCard = rowIdx === pile.length - 1; // top card in the column
-              // console.log(topCard);
-  
-              return (
-                <TableauCardSlot
-                  key={rowIdx}
-                  card={card}
-                  faceUp={faceUp}
-                  topCard={topCard}
-                  onClick={() =>
-                    console.log(`Clicked card at col ${colIdx}, row ${rowIdx}`)
-                  }
-                />
-              );
-            })}
-          </div>
-        ))}
-      </div>
+        <div className="tableauContainer">
+            {tableau.map((pile, colIdx) => (
+                <div className="tableauColumn" key={colIdx}>
+                    {Array.from({ length: 13 }, (_, rowIdx) => {
+                        const card = pile[rowIdx] || null;
+                        const faceUp = card?.faceUp || false;
+                        const topCard = rowIdx === pile.length - 1; // top card in the column
+                        // console.log(topCard);
+            
+                        return (
+                          <TableauCardSlot
+                            key={rowIdx}
+                            card={card}
+                            faceUp={faceUp}
+                            topCard={topCard}
+                            onClick={() =>
+                              console.log(`Clicked card at col ${colIdx}, row ${rowIdx}`)
+                            }
+                          />
+                        );
+                    })}
+                </div>
+            ))}
+        </div>
     );
 }
 

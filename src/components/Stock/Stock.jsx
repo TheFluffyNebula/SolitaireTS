@@ -12,7 +12,7 @@ function Stock({ stockPile }) {
         if (stockPile) {
             setStock(stockPile);
         }
-    }, [stockPile])
+    }, [stockPile]);
 
     const hasCards = stock.length > 0;
     return (
