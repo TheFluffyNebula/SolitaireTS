@@ -7,6 +7,7 @@ import Stock from "./components/Stock/Stock"
 import Waste from "./components/Waste/Waste"
 import Foundation from "./components/Foundation/Foundation"
 import createDeck from "./js/createDeck"
+import {drawCard} from "./js/gameLogic"
 
 function App() {
   const [stockPile, setStockPile] = useState([]);
@@ -27,11 +28,17 @@ function App() {
     setFoundation([[sampleCard], [sampleCard], [], [sampleCard]]);
   }, []);
 
+  const handleDraw = () => {
+    const { newStock, newWaste } = drawCard(stockPile, wastePile);
+    setStockPile(newStock);
+    setWastePile(newWaste);
+  };
+
   return (
     <>
       <div className='app-top'>
         <div className='app-top-left'>
-          <Stock stockPile={stockPile}></Stock>
+          <Stock stockPile={stockPile} onClick={handleDraw}></Stock>
           <Waste wastePile={wastePile}></Waste>
         </div>
         <Foundation foundationPiles={foundation}></Foundation>

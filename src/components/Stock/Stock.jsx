@@ -5,7 +5,7 @@ import './Stock.css'
 
 // if there's a card, facedown
 // if there's no card, visibility hidden
-function Stock({ stockPile }) {
+function Stock({ stockPile, onClick }) {
     const [stock, setStock] = useState([]);
 
     useEffect(() => {
@@ -16,7 +16,7 @@ function Stock({ stockPile }) {
 
     const hasCards = stock.length > 0;
     return (
-        <div className="stockContainer">
+        <div className="stockContainer" onClick={onClick}>
             {hasCards ? (
                 <div className="card face-down" />
             ) : (
