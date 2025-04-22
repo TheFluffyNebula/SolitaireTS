@@ -1,7 +1,3 @@
-html/css (card slots) for 
-foundation piles (four of these)
-waste pile (one card each)
-
 js stuff -- add event listeners for: (FSM/DFA-like in terms of possible transitions)
 stock -> to waste
 waste -> to foundation or tableau
