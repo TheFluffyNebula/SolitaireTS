@@ -15,8 +15,20 @@ function App() {
   const [tableau, setTableau] = useState([]);
   const [foundation, setFoundation] = useState([[], [], [], []])
 
-  let sampleCard = {
-    suit: "♠", 
+  let sampleCard1 = {
+    suit: "♦", 
+    value: 'A'
+  }
+  let sampleCard2 = {
+    suit: "♣", 
+    value: 'A'
+  }
+  // let sampleCard3 = {
+  //   suit: "♠", 
+  //   value: 'A'
+  // }
+  let sampleCard4 = {
+    suit: "♥", 
     value: 'A'
   }
 
@@ -25,7 +37,7 @@ function App() {
     const deck = createDeck.splitDeck();
     setStockPile(deck.stock);
     setTableau(deck.tableau);
-    setFoundation([[sampleCard], [sampleCard], [], [sampleCard]]);
+    setFoundation([[sampleCard1], [sampleCard2], [], [sampleCard4]]);
   }, []);
 
   const handleDraw = () => {
@@ -33,6 +45,10 @@ function App() {
     setStockPile(newStock);
     setWastePile(newWaste);
   };
+
+  function handleDropOnTableau(draggedCard, colIdx) {
+    console.log(draggedCard);
+  }
 
   return (
     <>

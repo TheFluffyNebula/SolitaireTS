@@ -8,10 +8,18 @@ import Card from "../Cards/Card";
 function Waste({ wastePile }) {
     const hasCards = wastePile.length > 0;
     const card = hasCards ? wastePile.at(-1) : null;
+
+    function handleDragStart(e) {
+        console.log("dragging!");
+        e.dataTransfer.setData("card", JSON.stringify(card));
+    }
+
     return (
         <div className="wasteContainer">
             {hasCards ? (
-                <Card card={card}></Card>
+                <div draggable onDragStart={handleDragStart}>
+                    <Card card={card} />
+                </div>
             ) : (
                 <div className="empty-waste-slot" />
             )}
