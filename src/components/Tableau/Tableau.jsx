@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
 
 import './Tableau.css'
 import TableauCardSlot from './TableauCardSlot.jsx'
@@ -7,16 +6,9 @@ import TableauCardSlot from './TableauCardSlot.jsx'
 // 7 columns of 13 card slots
 // given 7 arrays, update the card slots of the corresponding piles
 function Tableau({ tableauPiles }) {
-    const [tableau, setTableau] = useState([]);
-
-    useEffect(() => {
-        if (tableauPiles) {
-            setTableau(tableauPiles);
-        }
-    }, [tableauPiles]);
     return (
         <div className="tableauContainer">
-            {tableau.map((pile, colIdx) => (
+            {tableauPiles.map((pile, colIdx) => (
                 <div className="tableauColumn" key={colIdx}>
                     {Array.from({ length: 13 }, (_, rowIdx) => {
                         const card = pile[rowIdx] || null;

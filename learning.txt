@@ -1,0 +1,2 @@
+useState/useEffect not actually needed in Stock (not locally mutated)
+needed in App since they are edited there under listeners

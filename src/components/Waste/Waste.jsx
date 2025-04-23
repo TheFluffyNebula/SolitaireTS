@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
 
 import './Waste.css'
 import Card from "../Cards/Card";
@@ -7,20 +6,8 @@ import Card from "../Cards/Card";
 // if there's at least one card, render the last one
 // if there's no card, visibility hidden
 function Waste({ wastePile }) {
-    const [waste, setWaste] = useState([]);
-
-    useEffect(() => {
-        if (wastePile) {
-            setWaste(wastePile);
-        }
-    }, [wastePile]);
-
-    const hasCards = waste.length > 0;
-    // console.log(waste.at(-1));
-    let card = null;
-    if (hasCards) {
-        card = waste.at(-1);
-    }
+    const hasCards = wastePile.length > 0;
+    const card = hasCards ? wastePile.at(-1) : null;
     return (
         <div className="wasteContainer">
             {hasCards ? (
