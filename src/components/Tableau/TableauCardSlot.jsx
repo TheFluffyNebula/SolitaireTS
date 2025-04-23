@@ -10,13 +10,13 @@ function TableauCardSlot({ card, faceUp, topCard }) {
         //     JSON.stringify({ ...card, topCard }) // send topCard info with the drag
         //     );
         // }}
-        onDragOver={(e) => e.preventDefault()} // allow drop
-        onDrop={(e) => {
-          const draggedCard = JSON.parse(e.dataTransfer.getData("card"));
-          console.log("Dropped card on tableau:", draggedCard);
+        // onDragOver={(e) => e.preventDefault()} // allow drop
+        // onDrop={(e) => {
+        //   const draggedCard = JSON.parse(e.dataTransfer.getData("card"));
+        //   console.log("Dropped card on tableau:", draggedCard);
 
-          // onDropCard(draggedCard, colIdx);
-        }}
+        //   // onDropCard(draggedCard, colIdx);
+        // }}
     >
       {card ? (
         faceUp ? (

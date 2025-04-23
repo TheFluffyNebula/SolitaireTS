@@ -47,7 +47,7 @@ function App() {
   };
 
   function handleDropOnTableau(draggedCard, colIdx) {
-    console.log(draggedCard);
+    console.log("App hDOT", draggedCard, colIdx);
   }
 
   return (
@@ -59,7 +59,7 @@ function App() {
         </div>
         <Foundation foundationPiles={foundation}></Foundation>
       </div>
-      <Tableau tableauPiles={tableau}></Tableau>
+      <Tableau tableauPiles={tableau} onDropToTableau={handleDropOnTableau}></Tableau>
     </>
   )
 }
