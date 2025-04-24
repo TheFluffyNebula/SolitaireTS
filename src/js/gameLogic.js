@@ -1,4 +1,4 @@
-console.log("Hello World!");
+// console.log("Hello World!");
 
 // stockPile implemented as a queue: idx = n - 1 is out first
 // wastePile implemented as a stack: idx = n - 1 is out first

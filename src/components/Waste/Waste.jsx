@@ -10,8 +10,9 @@ function Waste({ wastePile }) {
     const card = hasCards ? wastePile.at(-1) : null;
 
     function handleDragStart(e) {
-        console.log("dragging!");
+        // console.log("dragging!");
         e.dataTransfer.setData("card", JSON.stringify(card));
+        e.dataTransfer.setData("source", JSON.stringify("waste"));
     }
 
     return (

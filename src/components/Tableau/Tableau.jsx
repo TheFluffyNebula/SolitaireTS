@@ -15,8 +15,9 @@ function Tableau({ tableauPiles, onDropToTableau }) {
                      onDrop={(e) => {
                         e.preventDefault();
                         const card = JSON.parse(e.dataTransfer.getData("card"));
-                        console.log("Card dropped!", card);
-                        onDropToTableau(card, colIdx);
+                        const cardSource = JSON.parse(e.dataTransfer.getData("source"));
+                        // console.log("Card dropped!", card);
+                        onDropToTableau(card, colIdx, cardSource);
                      }}
                      >
                     {Array.from({ length: 13 }, (_, rowIdx) => {

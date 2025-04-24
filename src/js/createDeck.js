@@ -1,5 +1,26 @@
 const SUITS = ["♠", "♣", "♥", "♦"];
+export const SUIT_TO_COLOR = {
+  "♠": "black", 
+  "♣": "black", 
+  "♥": "red", 
+  "♦": "red"
+}
 const VALUES = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+export const VALUE_TO_NUMBER = {
+  "A": 1,
+  "2": 2,
+  "3": 3,
+  "4": 4,
+  "5": 5,
+  "6": 6,
+  "7": 7,
+  "8": 8,
+  "9": 9,
+  "10": 10,
+  "J": 11,
+  "Q": 12,
+  "K": 13
+}
 
 const generateDeck = () => {
   // console.log("creating deck");
@@ -20,7 +41,7 @@ const generateDeck = () => {
   return shuffled;
 };
 
-const splitDeck = () => {
+export const splitDeck = () => {
   let deck = generateDeck();
   // output format: 
   // tableau: 1, 2, 3, 4, 5, 6, 7
@@ -46,5 +67,3 @@ const splitDeck = () => {
 }
 
 // splitDeck();
-
-export default {splitDeck};
