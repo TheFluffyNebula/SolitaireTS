@@ -51,24 +51,20 @@ function App() {
     if (!draggedCard) {
       return;
     }
-    if (cardSource == "waste") { // TODO: take the common functionality out and leave the specific stuff in here
-      // console.log("Hey!!");
-      // take last waste card (implemented as stack) and add it to the tableau column
-      const color = SUIT_TO_COLOR[draggedCard.suit];
-      const value = VALUE_TO_NUMBER[draggedCard.value];
-      // console.log(value);
 
-      const tableauCard = tableau.at(colIdx).at(-1);
-      // console.log("App hDOT", draggedCard, colIdx, cardSource);
-      if (!tableauCard) {
+    // common functionality: if king, put into empty slot regardless of source (waste, tableau, foundation)
+    const color = SUIT_TO_COLOR[draggedCard.suit];
+    const value = VALUE_TO_NUMBER[draggedCard.value];
+    // console.log(value);
+
+    const tableauCard = tableau.at(colIdx).at(-1);
+    // console.log("App hDOT", draggedCard, colIdx, cardSource);
+    if (!tableauCard) {
+      if (value != 13) {
         return;
       }
-      // console.log(tableauCard);
-      const tableauColor = SUIT_TO_COLOR[tableauCard.suit];
-      const tableauValue = VALUE_TO_NUMBER[tableauCard.value];
-      // console.log(tableauColor, tableauValue);
-      if (color != tableauColor && tableauValue - value == 1) {
-        // console.log("Valid move!");
+      // move the king to the empty square
+      if (cardSource == "waste") {
         // Make a copy of wastePile and tableau
         const newWaste = [...wastePile];
         const cardToMove = newWaste.pop(); // remove top card from waste
@@ -81,6 +77,32 @@ function App() {
         setWastePile(newWaste);
         setTableau(newTableau);
       }
+      return;
+    }
+
+    // common functionality: checking if it's a valid move
+    const tableauColor = SUIT_TO_COLOR[tableauCard.suit];
+    const tableauValue = VALUE_TO_NUMBER[tableauCard.value];
+    // console.log(tableauColor, tableauValue);
+    if (color == tableauColor || tableauValue - value != 1) {
+      return;
+    }
+    // console.log("Valid move!");
+
+    if (cardSource == "waste") {      
+      // take last waste card (implemented as stack) and add it to the tableau column
+      
+      // Make a copy of wastePile and tableau
+      const newWaste = [...wastePile];
+      const cardToMove = newWaste.pop(); // remove top card from waste
+      cardToMove.faceUp = true;
+
+      const newTableau = [...tableau];
+      const updatedColumn = [...newTableau[colIdx], cardToMove]; // add card to the target column
+      newTableau[colIdx] = updatedColumn;
+
+      setWastePile(newWaste);
+      setTableau(newTableau);
     }
   }
 
