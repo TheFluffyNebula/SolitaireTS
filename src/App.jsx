@@ -15,29 +15,29 @@ function App() {
   const [tableau, setTableau] = useState([]);
   const [foundation, setFoundation] = useState([[], [], [], []])
 
-  let sampleCard1 = {
-    suit: "♦", 
-    value: 'A'
-  }
-  let sampleCard2 = {
-    suit: "♣", 
-    value: 'A'
-  }
+  // let sampleCard1 = {
+  //   suit: "♦", 
+  //   value: 'A'
+  // }
+  // let sampleCard2 = {
+  //   suit: "♣", 
+  //   value: 'A'
+  // }
   // let sampleCard3 = {
   //   suit: "♠", 
   //   value: 'A'
   // }
-  let sampleCard4 = {
-    suit: "♥", 
-    value: 'A'
-  }
+  // let sampleCard4 = {
+  //   suit: "♥", 
+  //   value: 'A'
+  // }
 
   useEffect(() => {
     // Only run once on component mount
     const deck = splitDeck();
     setStockPile(deck.stock);
     setTableau(deck.tableau);
-    setFoundation([[sampleCard1], [sampleCard2], [], [sampleCard4]]);
+    setFoundation([[], [], [], []]);
   }, []);
 
   const handleDraw = () => {
@@ -47,6 +47,20 @@ function App() {
   };
 
   function handleDropOnTableau(draggedCard, colIdx, cardSource) {
+    function wasteToTableau() {
+      // Make a copy of wastePile and tableau
+      const newWaste = [...wastePile];
+      const cardToMove = newWaste.pop(); // remove top card from waste
+      cardToMove.faceUp = true;
+
+      const newTableau = [...tableau];
+      const updatedColumn = [...newTableau[colIdx], cardToMove]; // add card to the target column
+      newTableau[colIdx] = updatedColumn;
+
+      setWastePile(newWaste);
+      setTableau(newTableau);
+    }
+
     // console.log("App hDOT", draggedCard, colIdx, cardSource);
     if (!draggedCard) {
       return;
@@ -65,17 +79,7 @@ function App() {
       }
       // move the king to the empty square
       if (cardSource == "waste") {
-        // Make a copy of wastePile and tableau
-        const newWaste = [...wastePile];
-        const cardToMove = newWaste.pop(); // remove top card from waste
-        cardToMove.faceUp = true;
-
-        const newTableau = [...tableau];
-        const updatedColumn = [...newTableau[colIdx], cardToMove]; // add card to the target column
-        newTableau[colIdx] = updatedColumn;
-
-        setWastePile(newWaste);
-        setTableau(newTableau);
+        wasteToTableau();
       }
       return;
     }
@@ -90,19 +94,59 @@ function App() {
     // console.log("Valid move!");
 
     if (cardSource == "waste") {      
-      // take last waste card (implemented as stack) and add it to the tableau column
-      
-      // Make a copy of wastePile and tableau
+      wasteToTableau();
+    }
+  }
+
+  function handleDropOnFoundation(draggedCard, colIdx, cardSource) {
+    function wasteToFoundation() {
+      // Make a copy of wastePile and foundation
       const newWaste = [...wastePile];
       const cardToMove = newWaste.pop(); // remove top card from waste
       cardToMove.faceUp = true;
 
-      const newTableau = [...tableau];
-      const updatedColumn = [...newTableau[colIdx], cardToMove]; // add card to the target column
-      newTableau[colIdx] = updatedColumn;
+      const newFoundation = [...foundation];
+      const updatedColumn = [...newFoundation[colIdx], cardToMove]; // add card to the target column
+      newFoundation[colIdx] = updatedColumn;
 
       setWastePile(newWaste);
-      setTableau(newTableau);
+      setFoundation(newFoundation);
+    }
+
+    // console.log("App hDOF", draggedCard, colIdx, cardSource);
+    if (!draggedCard) {
+      return;
+    }
+
+    // common functionality: if ace, put into empty slot regardless of source (waste, tableau)
+    const suit = draggedCard.suit;
+    const value = VALUE_TO_NUMBER[draggedCard.value];
+    // console.log(value);
+
+    const foundationCard = foundation.at(colIdx).at(-1);
+    // console.log("App hDOT", draggedCard, colIdx, cardSource);
+    if (!foundationCard) {
+      if (value != 1) {
+        return;
+      }
+      // move the ace to the empty square
+      if (cardSource == "waste") {
+        wasteToFoundation();
+      }
+      return;
+    }
+
+    // common functionality: checking if it's a valid move
+    const foundationSuit = foundationCard.suit;
+    const foundationValue = VALUE_TO_NUMBER[foundationCard.value];
+    // console.log(foundationColor, foundationValue);
+    if (suit != foundationSuit || value - foundationValue != 1) {
+      return;
+    }
+    // console.log("Valid move!");
+
+    if (cardSource == "waste") {      
+      wasteToFoundation();
     }
   }
 
@@ -113,7 +157,7 @@ function App() {
           <Stock stockPile={stockPile} onClick={handleDraw}></Stock>
           <Waste wastePile={wastePile}></Waste>
         </div>
-        <Foundation foundationPiles={foundation}></Foundation>
+        <Foundation foundationPiles={foundation} onDropToFoundation={handleDropOnFoundation}></Foundation>
       </div>
       <Tableau tableauPiles={tableau} onDropToTableau={handleDropOnTableau}></Tableau>
     </>
