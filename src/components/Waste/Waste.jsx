@@ -13,6 +13,7 @@ function Waste({ wastePile }) {
         // console.log("dragging!");
         e.dataTransfer.setData("card", JSON.stringify(card));
         e.dataTransfer.setData("source", JSON.stringify("waste"));
+        e.dataTransfer.setData("fromColIdx", JSON.stringify(-1));
     }
 
     return (

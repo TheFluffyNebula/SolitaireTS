@@ -39,7 +39,6 @@ function Tableau({ tableauPiles, onDropToTableau }) {
                             faceUp={faceUp}
                             topCard={topCard}
                             colIdx={colIdx}
-                            onDrop={onDropToTableau}
                             isEmptySlot={pile.length === 0 && rowIdx === 0}
                           />
                         );
