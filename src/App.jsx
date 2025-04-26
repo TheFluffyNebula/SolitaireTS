@@ -136,7 +136,7 @@ function App() {
     }
   }
 
-  function handleDropOnFoundation(draggedCard, colIdx, cardSource) {
+  function handleDropOnFoundation(draggedCard, colIdx, cardSource, fromColIdx, topCard) {
     function wasteToFoundation() {
       // Make a copy of wastePile and foundation
       const newWaste = [...wastePile];
@@ -148,6 +148,30 @@ function App() {
       newFoundation[colIdx] = updatedColumn;
 
       setWastePile(newWaste);
+      setFoundation(newFoundation);
+    }
+
+    function tableauToFoundation() {
+      // must be top tableau card
+      if (!topCard) {
+        return;
+      }
+      // move the top card from tableau[fromColIdx] to foundation[colIdx]
+      // Make a copy of tableauPile and foundation
+      const newTableau = [...tableau];
+      let tab1 = [...tableau[fromColIdx]];
+      const cardToMove = tab1.pop(); // remove top card from waste
+      // make next card below face-up
+      if (tab1.length > 0) {
+        tab1.at(-1).faceUp = true;
+      }
+      newTableau[fromColIdx] = tab1;
+
+      const newFoundation = [...foundation];
+      const updatedColumn = [...newFoundation[colIdx], cardToMove]; // add card to the target column
+      newFoundation[colIdx] = updatedColumn;
+
+      setTableau(newTableau);
       setFoundation(newFoundation);
     }
 
@@ -170,6 +194,8 @@ function App() {
       // move the ace to the empty square
       if (cardSource == "waste") {
         wasteToFoundation();
+      } else if (cardSource == "tableau") {
+        tableauToFoundation();
       }
       return;
     }
@@ -185,6 +211,8 @@ function App() {
 
     if (cardSource == "waste") {      
       wasteToFoundation();
+    } else if (cardSource == "tableau") {
+      tableauToFoundation();
     }
   }
 

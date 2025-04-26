@@ -5,6 +5,14 @@ import FoundationCardSlot from './FoundationCardSlot.jsx'
 
 // 4 card slots, render top card
 function Foundation({ foundationPiles, onDropToFoundation }) {
+    function safeGetData(e, key, defaultValue) {
+        try {
+          const data = e.dataTransfer.getData(key);
+          return data ? JSON.parse(data) : defaultValue;
+        } catch {
+          return defaultValue;
+        }
+    }
     return (
         <div className="foundationContainer">
             {foundationPiles.map((pile, idx) => {
@@ -18,8 +26,10 @@ function Foundation({ foundationPiles, onDropToFoundation }) {
                             try {
                                 const card = JSON.parse(e.dataTransfer.getData("card"));
                                 const cardSource = JSON.parse(e.dataTransfer.getData("source"));
+                                const fromColIdx = safeGetData(e, "fromColIdx", -1);
+                                const topCard = safeGetData(e, "topCard", false);
                                 // console.log("Card dropped!", card);
-                                onDropToFoundation(card, idx, cardSource);    
+                                onDropToFoundation(card, idx, cardSource, fromColIdx, topCard);    
                             } catch {
                                 // console.log("Invalid move!");
                             }
