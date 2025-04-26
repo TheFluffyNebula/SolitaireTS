@@ -31,7 +31,7 @@ function Tableau({ tableauPiles, onDropToTableau }) {
                         const faceUp = card?.faceUp || false;
                         const topCard = rowIdx === pile.length - 1; // top card in the column
                         // console.log(topCard);
-            
+
                         return (
                           <TableauCardSlot
                             key={rowIdx}
@@ -39,9 +39,8 @@ function Tableau({ tableauPiles, onDropToTableau }) {
                             faceUp={faceUp}
                             topCard={topCard}
                             colIdx={colIdx}
-                            onClick={() =>
-                              console.log(`Clicked card at col ${colIdx}, row ${rowIdx}`)
-                            }
+                            onDrop={onDropToTableau}
+                            isEmptySlot={pile.length === 0 && rowIdx === 0}
                           />
                         );
                     })}
