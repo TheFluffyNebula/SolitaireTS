@@ -46,7 +46,7 @@ function App() {
     setWastePile(newWaste);
   };
 
-  function handleDropOnTableau(draggedCard, colIdx, cardSource) {
+  function handleDropOnTableau(draggedCard, colIdx, cardSource, fromColIdx = -1) {
     function wasteToTableau() {
       // Make a copy of wastePile and tableau
       const newWaste = [...wastePile];
@@ -58,6 +58,38 @@ function App() {
       newTableau[colIdx] = updatedColumn;
 
       setWastePile(newWaste);
+      setTableau(newTableau);
+    }
+
+    // information we have: colIdx (drop location)
+    function tableauToTableau() {
+      // console.log("Card from column", fromColIdx);
+      if (fromColIdx == -1) {
+        console.log("tableau-to-tableau: fromCol = -1");
+        return;
+      }
+      if (fromColIdx == colIdx) {
+        return;
+      }
+      // valid move: move all cards from tableau[fromColIdx] past the card to tableau[colIdx]
+      console.log("Valid move!");
+      // TODO: implement logic
+      const newTableau = [...tableau];
+      let tab1 = [...tableau[fromColIdx]];
+      let tab2 = [...tableau[colIdx]];
+      // moving from tab1 onto tab2
+      const idx = newTableau[fromColIdx].findIndex(
+        (c) => c.suit === draggedCard.suit && c.value === draggedCard.value
+      );
+      const numsToMove = tab1.slice(idx);
+      tab1 = tab1.slice(0, idx);
+      // make the card under it face up
+      if (tab1.length > 0) {
+        tab1[tab1.length - 1].faceUp = true;
+      }
+      tab2 = [...tab2, ...numsToMove]
+      newTableau[fromColIdx] = tab1;
+      newTableau[colIdx] = tab2;
       setTableau(newTableau);
     }
 
@@ -80,6 +112,9 @@ function App() {
       // move the king to the empty square
       if (cardSource == "waste") {
         wasteToTableau();
+      } else if (cardSource == "tableau") {
+        // console.log("Hey!!");
+        tableauToTableau();
       }
       return;
     }
@@ -95,6 +130,9 @@ function App() {
 
     if (cardSource == "waste") {      
       wasteToTableau();
+    } else if (cardSource == "tableau") {
+      // console.log("Hey!!");
+      tableauToTableau();
     }
   }
 

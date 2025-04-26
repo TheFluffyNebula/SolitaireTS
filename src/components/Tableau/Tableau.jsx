@@ -14,10 +14,16 @@ function Tableau({ tableauPiles, onDropToTableau }) {
                      onDragOver={(e) => e.preventDefault()}
                      onDrop={(e) => {
                         e.preventDefault();
-                        const card = JSON.parse(e.dataTransfer.getData("card"));
-                        const cardSource = JSON.parse(e.dataTransfer.getData("source"));
-                        // console.log("Card dropped!", card);
-                        onDropToTableau(card, colIdx, cardSource);
+                        try {
+                          const card = JSON.parse(e.dataTransfer.getData("card"));
+                          const cardSource = JSON.parse(e.dataTransfer.getData("source"));
+                          // console.log("Card dropped!", card);
+                          const fromColIdx = JSON.parse(e.dataTransfer.getData("fromColIdx"));
+                          // console.log(fromColIdx);
+                          onDropToTableau(card, colIdx, cardSource, fromColIdx);
+                        } catch {
+                          // console.log("Invalid move!");
+                        }
                      }}
                      >
                     {Array.from({ length: 13 }, (_, rowIdx) => {
@@ -32,6 +38,7 @@ function Tableau({ tableauPiles, onDropToTableau }) {
                             card={card}
                             faceUp={faceUp}
                             topCard={topCard}
+                            colIdx={colIdx}
                             onClick={() =>
                               console.log(`Clicked card at col ${colIdx}, row ${rowIdx}`)
                             }

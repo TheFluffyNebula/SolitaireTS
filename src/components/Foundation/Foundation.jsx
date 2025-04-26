@@ -15,10 +15,14 @@ function Foundation({ foundationPiles, onDropToFoundation }) {
                         onDragOver={(e) => e.preventDefault()}
                         onDrop={(e) => {
                             e.preventDefault();
-                            const card = JSON.parse(e.dataTransfer.getData("card"));
-                            const cardSource = JSON.parse(e.dataTransfer.getData("source"));
-                            // console.log("Card dropped!", card);
-                            onDropToFoundation(card, idx, cardSource);
+                            try {
+                                const card = JSON.parse(e.dataTransfer.getData("card"));
+                                const cardSource = JSON.parse(e.dataTransfer.getData("source"));
+                                // console.log("Card dropped!", card);
+                                onDropToFoundation(card, idx, cardSource);    
+                            } catch {
+                                // console.log("Invalid move!");
+                            }
                         }}
                     >
                         <FoundationCardSlot card={topCard}/>

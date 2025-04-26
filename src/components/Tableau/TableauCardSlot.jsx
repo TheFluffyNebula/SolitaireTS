@@ -1,26 +1,25 @@
 import Card from "../Cards/Card";
 
-function TableauCardSlot({ card, faceUp, topCard }) {
+function TableauCardSlot({ card, faceUp, topCard, colIdx }) {
+  function handleDragStart(e) {
+    // console.log("dragging!");
+    e.dataTransfer.setData("card", JSON.stringify(card));
+    e.dataTransfer.setData("source", JSON.stringify("tableau"));
+    e.dataTransfer.setData("fromColIdx", JSON.stringify(colIdx));
+    if (topCard) {
+      e.dataTransfer.setData("topCard", JSON.stringify("true"));
+    } else {
+      e.dataTransfer.setData("topCard", JSON.stringify("false"));
+    }
+  }
 
   return (
-    <div className="tableau-card-slot" draggable={faceUp}
-        // onDragStart={(e) => {
-        //     e.dataTransfer.setData(
-        //     "card",
-        //     JSON.stringify({ ...card, topCard }) // send topCard info with the drag
-        //     );
-        // }}
-        // onDragOver={(e) => e.preventDefault()} // allow drop
-        // onDrop={(e) => {
-        //   const draggedCard = JSON.parse(e.dataTransfer.getData("card"));
-        //   console.log("Dropped card on tableau:", draggedCard);
-
-        //   // onDropCard(draggedCard, colIdx);
-        // }}
-    >
+    <div className="tableau-card-slot">
       {card ? (
         faceUp ? (
-          <Card card={card} />
+          <div draggable={faceUp} onDragStart={handleDragStart}>
+            <Card card={card} />
+          </div>
         ) : (
           <div className="card face-down" />
         )
