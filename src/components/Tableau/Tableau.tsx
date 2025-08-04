@@ -1,7 +1,7 @@
 import React from "react";
 
 import './Tableau.css'
-import TableauCardSlot from './TableauCardSlot.jsx'
+import TableauCardSlot from './TableauCardSlot.js'
 
 // 7 columns of 13 card slots
 // given 7 arrays, update the card slots of the corresponding piles

@@ -1,4 +1,4 @@
-import Card from "../Cards/Card";
+import Card from "../Cards/Card.tsx";
 
 function FoundationCardSlot({ card }) {
   // console.log(card);

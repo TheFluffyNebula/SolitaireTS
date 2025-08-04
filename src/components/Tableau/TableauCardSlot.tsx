@@ -1,4 +1,4 @@
-import Card from "../Cards/Card";
+import Card from "../Cards/Card.tsx";
 
 function TableauCardSlot({ card, faceUp, topCard, colIdx, isEmptySlot }) {
   function handleDragStart(e) {

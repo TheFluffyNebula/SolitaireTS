@@ -2,12 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 import './App.css'
-import Tableau from "./components/Tableau/Tableau"
-import Stock from "./components/Stock/Stock"
-import Waste from "./components/Waste/Waste"
-import Foundation from "./components/Foundation/Foundation"
-import {splitDeck, VALUE_TO_NUMBER, SUIT_TO_COLOR} from "./js/createDeck"
-import {drawCard} from "./js/gameLogic"
+import Tableau from "./components/Tableau/Tableau.js"
+import Stock from "./components/Stock/Stock.js"
+import Waste from "./components/Waste/Waste.jsx"
+import Foundation from "./components/Foundation/Foundation.js"
+import {splitDeck, VALUE_TO_NUMBER, SUIT_TO_COLOR} from "./js/createDeck.js"
+import {drawCard} from "./js/gameLogic.js"
 
 function App() {
   const [stockPile, setStockPile] = useState([]);

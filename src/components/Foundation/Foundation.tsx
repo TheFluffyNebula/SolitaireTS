@@ -1,7 +1,7 @@
 import React from "react";
 
 import './Foundation.css'
-import FoundationCardSlot from './FoundationCardSlot.jsx'
+import FoundationCardSlot from './FoundationCardSlot.js'
 
 // 4 card slots, render top card
 function Foundation({ foundationPiles, onDropToFoundation }) {
